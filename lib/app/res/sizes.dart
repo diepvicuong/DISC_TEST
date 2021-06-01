@@ -13,4 +13,11 @@ class AppSize {
   static const sizedBoxHeightL = 20.0;
 
   static const ratioHomeService = 0.3;
+
+  static const ratioBottomButton = 0.1;
+}
+
+enum PageViewStatus {
+  begining,
+  ending,
 }

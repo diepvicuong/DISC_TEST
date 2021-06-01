@@ -1,36 +1,100 @@
+import 'package:disc_test/app/controllers/question/question_controller.dart';
+import 'package:disc_test/app/res/colors.dart';
+import 'package:disc_test/app/res/config.dart';
 import 'package:disc_test/app/res/sample_data.dart';
-import 'package:disc_test/app/ui/question/page/answer_page.dart';
+import 'package:disc_test/app/res/styles.dart';
+import 'package:disc_test/app/ui/question/page/answer_pageview.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class QuestionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _questionController = Get.find<QuestionController>();
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.chevron_left),
-          onPressed: () {},
-        ),
-        title: Container(
-          color: Colors.amber,
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.help_outline_outlined),
-            onPressed: () {},
-          )
+      backgroundColor: Colors.amberAccent,
+      body: Column(
+        children: [
+          AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: IconButton(
+              icon: Icon(Icons.chevron_left),
+              onPressed: () {},
+            ),
+            title: CustomPageIndicator(),
+            actions: [
+              IconButton(
+                icon: Icon(Icons.help_outline_outlined),
+                onPressed: () {},
+              )
+            ],
+          ),
+          Expanded(
+            child: PageView.builder(
+              controller: _questionController.pageController,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: arrayData.length,
+              itemBuilder: (context, index) {
+                return AnswerViewPage(
+                  questionData: arrayData[index],
+                  page: index / (arrayData.length - 1),
+                );
+              },
+              onPageChanged: (value) {
+                print('OnPageChanged: $value');
+                _questionController.currentPageView = value;
+              },
+            ),
+          ),
         ],
       ),
-      body: Container(
-        child: PageView.builder(
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: arrayData.length,
-          itemBuilder: (context, index) {
-            return AnswerPage(
-              questionData: arrayData[index],
-            );
-          },
-        ),
+    );
+  }
+}
+
+class CustomPageIndicator extends StatelessWidget {
+  const CustomPageIndicator({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GetX<QuestionController>(
+      builder: (controller) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Cau hoi ${controller.currentPageView + 1}/30",
+                  style: AppStyle.indicatorTextStyle),
+              Text('00:25:00', style: AppStyle.indicatorTextStyle),
+            ],
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              for (int i = 0; i < 30; i++)
+                if (i == controller.currentPageView) ...[circleBar(true)] else
+                  circleBar(false),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget circleBar(bool isActive) {
+    return Expanded(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: AppConfig.pageChangeMilisecond),
+        height: isActive ? 10 : 6,
+        decoration: BoxDecoration(
+            color: isActive ? AppColor.kprimaryColor : AppColor.kSecondaryColor,
+            borderRadius: BorderRadius.all(Radius.circular(12))),
       ),
     );
   }
