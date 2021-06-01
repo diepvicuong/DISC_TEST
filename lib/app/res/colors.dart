@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppColor {
   static final Color kprimaryColor = Color(0xff705f99);
+  static final Color kprimaryColorLight = Color(0xff9f8cca);
+
   static final Color kSecondaryColor = Colors.white;
 
   static final Color disableButtonColor = Colors.grey;

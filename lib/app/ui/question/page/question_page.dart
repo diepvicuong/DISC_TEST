@@ -35,11 +35,11 @@ class QuestionPage extends StatelessWidget {
             child: PageView.builder(
               controller: _questionController.pageController,
               physics: NeverScrollableScrollPhysics(),
-              itemCount: arrayData.length,
+              itemCount: _questionController.listQuestion.length,
               itemBuilder: (context, index) {
                 return AnswerViewPage(
-                  questionData: arrayData[index],
-                  page: index / (arrayData.length - 1),
+                  questionData: _questionController.listQuestion[index],
+                  page: index / (_questionController.listQuestion.length - 1),
                 );
               },
               onPageChanged: (value) {
@@ -54,7 +54,7 @@ class QuestionPage extends StatelessWidget {
   }
 }
 
-class CustomPageIndicator extends StatelessWidget {
+class CustomPageIndicator extends GetView<QuestionController> {
   const CustomPageIndicator({
     Key? key,
   }) : super(key: key);
@@ -68,7 +68,8 @@ class CustomPageIndicator extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Cau hoi ${controller.currentPageView + 1}/30",
+              Text(
+                  "Cau hoi ${controller.currentPageView + 1}/${controller.listQuestion.length}",
                   style: AppStyle.indicatorTextStyle),
               Text('00:25:00', style: AppStyle.indicatorTextStyle),
             ],
@@ -77,7 +78,7 @@ class CustomPageIndicator extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              for (int i = 0; i < 30; i++)
+              for (int i = 0; i < controller.listQuestion.length; i++)
                 if (i == controller.currentPageView) ...[circleBar(true)] else
                   circleBar(false),
             ],

@@ -157,6 +157,13 @@ class _ListAnswerWidgetState extends State<ListAnswerWidget>
                         if (isEnabledButton()) {
                           if (widget.page == PageViewStatus.ending.index) {
                             print('Finish');
+                            Get.defaultDialog(
+                                title: 'Notification',
+                                content:
+                                    Text('Do you want to finish the Test?'),
+                                onConfirm: () {},
+                                onCancel: () {},
+                                barrierDismissible: false);
                           } else {
                             Get.find<QuestionController>().nextPage();
                           }
