@@ -1,147 +1,129 @@
 import 'package:disc_test/app/res/colors.dart';
 import 'package:disc_test/app/res/sizes.dart';
 import 'package:disc_test/app/res/styles.dart';
+import 'package:disc_test/app/ui/result/page/send_mail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kprimaryColorLight,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: Stack(
         children: [
           Positioned(
             top: 0,
             right: 0,
             left: 0,
-            bottom: 50,
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: AppSize.homeItemPadding),
-                child: Column(
-                  children: [
-                    Text(
-                      'Bai trac nghiem DISC',
-                      style: AppStyle.titleBoldTextStyle,
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: AppSize.sizedBoxHeightXL),
-                    Padding(
+            bottom:
+                MediaQuery.of(context).size.height * AppSize.ratioBottomButton,
+            child: Column(
+              children: [
+                AppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  leading: IconButton(
+                    icon: Icon(Icons.chevron_left),
+                    onPressed: () {
+                      Get.back();
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: AppSize.paddingSizeL),
-                      child: Text(
-                        'Chuc mung ban da hoan thanh bai Test!',
-                        style: AppStyle.contentNormalTextStyle,
-                        textAlign: TextAlign.center,
+                          horizontal: AppSize.sizeBoxWidthL),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            'Bai trac nghiem DISC',
+                            style: AppStyle.titleBoldTextStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: AppSize.sizedBoxHeightL),
+                          Text(
+                            'Xem ket qua',
+                            style: AppStyle.contentNormalTextStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: AppSize.sizedBoxHeightL),
+                          Image.asset('assets/images/result_1.png'),
+                          const SizedBox(height: AppSize.sizedBoxHeightL),
+                          Text(
+                            'D-I',
+                            style: AppStyle.contentNormalTextStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: AppSize.sizedBoxHeightL),
+                          Text(
+                            'Những người nằm ở nhóm này quan trọng kết quả hoàn thành.'
+                            ' Họ luôn tự tin và có động lực cạnh tranh để chiến thắng hoặc đạt được thành công.'
+                            ' Họ luôn chấp nhận thử thách và hành động tức thì để đạt được kết quả.'
+                            ' Những người thuộc nhóm Thủ lĩnh thường được mô tả là mạnh mẽ, tự tin, nhanh nhẹn, luôn tiếp cận vấn đề một cách trực tiếp.'
+                            ' Tuy nhiên, điểm trừ của những người thuộc nhóm Thủ lĩnh là đôi khi họ bị giới hạn bởi sự vô tâm đối với người khác, thiếu kiên nhẫn và hay hoài nghi. Đôi khi họ cũng được cho là dễ bị tổn thương.'
+                            'Những người nằm ở nhóm này quan trọng kết quả hoàn thành.'
+                            ' Họ luôn tự tin và có động lực cạnh tranh để chiến thắng hoặc đạt được thành công.'
+                            ' Họ luôn chấp nhận thử thách và hành động tức thì để đạt được kết quả.'
+                            'Những người nằm ở nhóm này quan trọng kết quả hoàn thành.'
+                            ' Họ luôn tự tin và có động lực cạnh tranh để chiến thắng hoặc đạt được thành công.'
+                            ' Họ luôn chấp nhận thử thách và hành động tức thì để đạt được kết quả.'
+                            ' Những người thuộc nhóm Thủ lĩnh thường được mô tả là mạnh mẽ, tự tin, nhanh nhẹn, luôn tiếp cận vấn đề một cách trực tiếp.'
+                            'Những người nằm ở nhóm này quan trọng kết quả hoàn thành.'
+                            ' Họ luôn tự tin và có động lực cạnh tranh để chiến thắng hoặc đạt được thành công.'
+                            ' Họ luôn chấp nhận thử thách và hành động tức thì để đạt được kết quả.'
+                            ' Những người thuộc nhóm Thủ lĩnh thường được mô tả là mạnh mẽ, tự tin, nhanh nhẹn, luôn tiếp cận vấn đề một cách trực tiếp.'
+                            ' Những người thuộc nhóm Thủ lĩnh thường được mô tả là mạnh mẽ, tự tin, nhanh nhẹn, luôn tiếp cận vấn đề một cách trực tiếp.',
+                            style: AppStyle.appTextStyle,
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: AppSize.sizedBoxHeightXL),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Expanded(
-                            child: CustomButton(
-                          iconData: Icons.description,
-                          text: 'Xem ket qua',
-                          onTap: () {
-                            print('Xem ket qua');
-                          },
-                        )),
-                        const SizedBox(
-                          width: AppSize.sizeBoxWidthM,
-                        ),
-                        Expanded(
-                            child: CustomButton(
-                                iconData: Icons.email, text: 'Gui ket qua')),
-                        const SizedBox(
-                          width: AppSize.sizeBoxWidthM,
-                        ),
-                        Expanded(
-                            child: CustomButton(
-                                iconData: Icons.assignment,
-                                text: 'Xem lai bai lam')),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+                  ),
+                )
+              ],
             ),
           ),
           Positioned(
             right: 0,
             left: 0,
-            bottom: 50,
-            child: Center(
-              child: ElevatedButton.icon(
-                icon: Icon(Icons.home),
-                label: Text('Home'),
-                style: ElevatedButton.styleFrom(
-                  primary: AppColor.mostBtnColor,
-                  shape: StadiumBorder(),
-                  // minimumSize: Size(80, 40)
-                ),
-                onPressed: () {},
+            bottom: 0,
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height *
+                  AppSize.ratioBottomButton,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton.icon(
+                    icon: Icon(Icons.home),
+                    label: Text('Trang chu'),
+                    style: ElevatedButton.styleFrom(
+                      primary: AppColor.mostBtnColor,
+                      shape: StadiumBorder(),
+                      minimumSize:
+                          Size(AppSize.buttonMinWidth, AppSize.buttonMinHeight),
+                    ),
+                    onPressed: () {},
+                  ),
+                  SizedBox(width: AppSize.sizeBoxWidthL),
+                  ElevatedButton(
+                    child: Text('Gui ket qua'),
+                    style: ElevatedButton.styleFrom(
+                        primary: AppColor.kprimaryColor,
+                        shape: StadiumBorder(),
+                        minimumSize: Size(
+                            AppSize.buttonMinWidth, AppSize.buttonMinHeight)),
+                    onPressed: () {
+                      Get.to(SendPage());
+                    },
+                  ),
+                ],
               ),
             ),
           )
         ],
-      ),
-    );
-  }
-}
-
-class CustomButton extends StatelessWidget {
-  final IconData iconData;
-  final String text;
-  final VoidCallback? onTap;
-
-  CustomButton(
-      {Key? key, required this.iconData, required this.text, this.onTap})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 160,
-      child: Card(
-        color: AppColor.kSecondaryColor,
-        elevation: 10,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppSize.paddingSizeM)),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSize.paddingSizeS),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                this.iconData,
-                size: 60,
-                color: AppColor.kprimaryColor,
-              ),
-              SizedBox(
-                height: AppSize.sizedBoxHeightM,
-              ),
-              SizedBox(
-                height: AppSize.sizedBoxHeightXL,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: GestureDetector(
-                      onTap: this.onTap,
-                      child: Text(
-                        this.text,
-                        style: AppStyle.primaryColorBoldTextStyle,
-                        textAlign: TextAlign.center,
-                      )),
-                ),
-              )
-            ],
-          ),
-        ),
       ),
     );
   }

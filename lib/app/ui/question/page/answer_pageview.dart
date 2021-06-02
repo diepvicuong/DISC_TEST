@@ -25,12 +25,12 @@ class AnswerViewPage extends StatelessWidget {
         Expanded(flex: 2, child: Center(child: Text(questionData.question))),
         Expanded(
           flex: 5,
-          child: Container(
-            decoration: BoxDecoration(
+          child: DecoratedBox(
+            decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(AppStyle.commonBorderRadius),
-                    topRight: Radius.circular(AppStyle.commonBorderRadius))),
+                    topLeft: Radius.circular(AppSize.commonBorderRadius),
+                    topRight: Radius.circular(AppSize.commonBorderRadius))),
             child: ListAnswerWidget(
               questionData: questionData,
               page: this.page,
@@ -71,8 +71,8 @@ class _ListAnswerWidgetState extends State<ListAnswerWidget>
           itemCount: widget.questionData.answerList.length,
           itemBuilder: (context, index) => Column(
             children: [
-              SizedBox(
-                height: 20,
+              const SizedBox(
+                height: AppSize.sizeBoxWidthL,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -129,7 +129,11 @@ class _ListAnswerWidgetState extends State<ListAnswerWidget>
                           style: TextStyle(color: Colors.black),
                         ),
                         style: ElevatedButton.styleFrom(
-                            primary: Colors.white, shape: StadiumBorder()),
+                          primary: Colors.white,
+                          shape: StadiumBorder(),
+                          minimumSize: Size(
+                              AppSize.buttonMinWidth, AppSize.buttonMinHeight),
+                        ),
                         onPressed: () {
                           Get.find<QuestionController>().previousPage();
                         },
@@ -138,7 +142,7 @@ class _ListAnswerWidgetState extends State<ListAnswerWidget>
                   ),
                   Visibility(
                     visible: widget.page != PageViewStatus.begining.index,
-                    child: SizedBox(
+                    child: const SizedBox(
                       width: 20,
                     ),
                   ),
@@ -148,11 +152,13 @@ class _ListAnswerWidgetState extends State<ListAnswerWidget>
                           ? Text('Finish')
                           : Text('Next'),
                       style: ElevatedButton.styleFrom(
-                          primary: isEnabledButton()
-                              ? AppColor.kprimaryColor
-                              : AppColor.disableButtonColor,
-                          shape: StadiumBorder(),
-                          minimumSize: Size(80, 40)),
+                        primary: isEnabledButton()
+                            ? AppColor.kprimaryColor
+                            : AppColor.disableButtonColor,
+                        shape: StadiumBorder(),
+                        minimumSize: Size(
+                            AppSize.buttonMinWidth, AppSize.buttonMinHeight),
+                      ),
                       onPressed: () {
                         if (isEnabledButton()) {
                           if (widget.page == PageViewStatus.ending.index) {
@@ -209,7 +215,7 @@ class AnswerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(AppSize.paddingSizeM),
+      padding: const EdgeInsets.all(AppSize.paddingSizeS),
       decoration: BoxDecoration(
           color: isMost
               ? AppColor.enableMostColor
@@ -218,7 +224,7 @@ class AnswerWidget extends StatelessWidget {
                   : this.backgroundColor ?? Colors.white,
           border: Border.all(color: this.borderColor ?? AppColor.kprimaryColor),
           borderRadius: BorderRadius.circular(
-              this.borderRadius ?? AppStyle.commonBorderRadius)),
+              this.borderRadius ?? AppSize.commonBorderRadius)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -227,7 +233,7 @@ class AnswerWidget extends StatelessWidget {
             child: ClipOval(
               child: Container(
                 color: isMost ? Colors.white : AppColor.mostBtnColor,
-                padding: EdgeInsets.all(AppSize.paddingSizeS),
+                padding: const EdgeInsets.all(AppSize.paddingSizeS),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent, // inkwell color
@@ -260,7 +266,7 @@ class AnswerWidget extends StatelessWidget {
             child: ClipOval(
               child: Container(
                 color: isLeast ? Colors.white : AppColor.leastBtnColor,
-                padding: EdgeInsets.all(AppSize.paddingSizeS),
+                padding: const EdgeInsets.all(AppSize.paddingSizeS),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent, // inkwell color

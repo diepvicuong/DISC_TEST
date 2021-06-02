@@ -26,7 +26,7 @@ class QuestionPage extends StatelessWidget {
             title: CustomPageIndicator(),
             actions: [
               IconButton(
-                icon: Icon(Icons.help_outline_outlined),
+                icon: const Icon(Icons.help_outline_outlined),
                 onPressed: () {},
               )
             ],
@@ -95,7 +95,7 @@ class CustomPageIndicator extends GetView<QuestionController> {
         height: isActive ? 10 : 6,
         decoration: BoxDecoration(
             color: isActive ? AppColor.kprimaryColor : AppColor.kSecondaryColor,
-            borderRadius: BorderRadius.all(Radius.circular(12))),
+            borderRadius: const BorderRadius.all(Radius.circular(12))),
       ),
     );
   }

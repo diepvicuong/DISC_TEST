@@ -74,7 +74,8 @@ class _StartPageState extends State<StartPage> {
                       style: ElevatedButton.styleFrom(
                         primary: AppColor.mostBtnColor,
                         shape: StadiumBorder(),
-                        // minimumSize: Size(80, 40)
+                        minimumSize: Size(
+                            AppSize.buttonMinWidth, AppSize.buttonMinHeight),
                       ),
                       onPressed: () {
                         Get.defaultDialog(
