@@ -1,3 +1,4 @@
+import 'package:disc_test/app/res/colors.dart';
 import 'package:flutter/material.dart';
 
 class AppStyle {
@@ -12,4 +13,9 @@ class AppStyle {
 
   static final contentNormalTextStyle =
       appTextStyle.copyWith(fontSize: 20.0, fontWeight: FontWeight.normal);
+
+  static final primaryColorTextStyle = TextStyle(color: AppColor.kprimaryColor);
+
+  static final primaryColorBoldTextStyle =
+      primaryColorTextStyle.copyWith(fontWeight: FontWeight.bold);
 }
