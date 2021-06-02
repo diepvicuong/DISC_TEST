@@ -1,9 +1,11 @@
+import 'package:disc_test/app/common/custom_body_background.dart';
 import 'package:disc_test/app/controllers/question/question_controller.dart';
 import 'package:disc_test/app/res/colors.dart';
 import 'package:disc_test/app/res/config.dart';
 import 'package:disc_test/app/res/sample_data.dart';
 import 'package:disc_test/app/res/styles.dart';
 import 'package:disc_test/app/ui/question/page/answer_pageview.dart';
+import 'package:disc_test/app/ui/welcome/page/help_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -13,42 +15,43 @@ class QuestionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _questionController = Get.find<QuestionController>();
     return Scaffold(
-      backgroundColor: Colors.amberAccent,
-      body: Column(
-        children: [
-          AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            leading: IconButton(
-              icon: Icon(Icons.chevron_left),
-              onPressed: () {},
-            ),
-            title: CustomPageIndicator(),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.help_outline_outlined),
+      body: CustomBackgroundContainer(
+        child: Column(
+          children: [
+            AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              leading: IconButton(
+                icon: Icon(Icons.chevron_left),
                 onPressed: () {},
-              )
-            ],
-          ),
-          Expanded(
-            child: PageView.builder(
-              controller: _questionController.pageController,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: _questionController.listQuestion.length,
-              itemBuilder: (context, index) {
-                return AnswerViewPage(
-                  questionData: _questionController.listQuestion[index],
-                  page: index / (_questionController.listQuestion.length - 1),
-                );
-              },
-              onPageChanged: (value) {
-                print('OnPageChanged: $value');
-                _questionController.currentPageView = value;
-              },
+              ),
+              title: CustomPageIndicator(),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.help_outline_outlined),
+                  onPressed: () {},
+                )
+              ],
             ),
-          ),
-        ],
+            Expanded(
+              child: PageView.builder(
+                controller: _questionController.pageController,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: _questionController.listQuestion.length,
+                itemBuilder: (context, index) {
+                  return AnswerViewPage(
+                    questionData: _questionController.listQuestion[index],
+                    page: index / (_questionController.listQuestion.length - 1),
+                  );
+                },
+                onPageChanged: (value) {
+                  print('OnPageChanged: $value');
+                  _questionController.currentPageView = value;
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

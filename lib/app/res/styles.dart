@@ -12,6 +12,9 @@ class AppStyle {
   static final contentNormalTextStyle =
       appTextStyle.copyWith(fontSize: 20.0, fontWeight: FontWeight.normal);
 
+  static final italicTextStyle = appTextStyle.copyWith(
+      fontWeight: FontWeight.normal, fontStyle: FontStyle.italic);
+
   static final primaryColorTextStyle = TextStyle(color: AppColor.kprimaryColor);
 
   static final primaryColorBoldTextStyle =

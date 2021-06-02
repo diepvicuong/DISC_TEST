@@ -22,7 +22,13 @@ class AnswerViewPage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Expanded(flex: 2, child: Center(child: Text(questionData.question))),
+        Expanded(
+            flex: 2,
+            child: Center(
+                child: Text(
+              questionData.question,
+              style: AppStyle.titleBoldTextStyle,
+            ))),
         Expanded(
           flex: 5,
           child: DecoratedBox(
@@ -231,17 +237,15 @@ class AnswerWidget extends StatelessWidget {
           Opacity(
             opacity: isLeast ? 0.0 : 1.0,
             child: ClipOval(
-              child: Container(
-                color: isMost ? Colors.white : AppColor.mostBtnColor,
-                padding: const EdgeInsets.all(AppSize.paddingSizeS),
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent, // inkwell color
+              child: GestureDetector(
+                onTap: mostOnTap,
+                child: Container(
+                  color: isMost ? Colors.white : AppColor.mostBtnColor,
+                  padding: const EdgeInsets.all(AppSize.paddingSizeS),
                   child: Icon(
                     Icons.done,
                     color: isMost ? AppColor.mostBtnColor : Colors.white,
                   ),
-                  onTap: mostOnTap,
                 ),
               ),
             ),
@@ -264,17 +268,15 @@ class AnswerWidget extends StatelessWidget {
           Opacity(
             opacity: isMost ? 0.0 : 1.0,
             child: ClipOval(
-              child: Container(
-                color: isLeast ? Colors.white : AppColor.leastBtnColor,
-                padding: const EdgeInsets.all(AppSize.paddingSizeS),
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent, // inkwell color
+              child: GestureDetector(
+                onTap: leastOnTap,
+                child: Container(
+                  color: isLeast ? Colors.white : AppColor.leastBtnColor,
+                  padding: const EdgeInsets.all(AppSize.paddingSizeS),
                   child: Icon(
                     Icons.clear,
                     color: isLeast ? AppColor.leastBtnColor : Colors.white,
                   ),
-                  onTap: leastOnTap,
                 ),
               ),
             ),
