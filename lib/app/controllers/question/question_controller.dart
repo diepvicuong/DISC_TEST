@@ -42,4 +42,10 @@ class QuestionController extends GetxController {
   }
 
   finish() {}
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
 }
