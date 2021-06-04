@@ -6,6 +6,7 @@ import 'package:disc_test/app/res/colors.dart';
 import 'package:disc_test/app/res/sample_data.dart';
 import 'package:disc_test/app/res/sizes.dart';
 import 'package:disc_test/app/res/styles.dart';
+import 'package:disc_test/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -169,11 +170,15 @@ class _ListAnswerWidgetState extends State<ListAnswerWidget>
                         if (isEnabledButton()) {
                           if (widget.page == PageViewStatus.ending.index) {
                             print('Finish');
+
                             Get.defaultDialog(
                                 title: 'Notification',
                                 content:
                                     Text('Do you want to finish the Test?'),
-                                onConfirm: () {},
+                                onConfirm: () {
+                                  Get.back();
+                                  Get.toNamed(Routes.FINISH_PAGE);
+                                },
                                 onCancel: () {},
                                 barrierDismissible: false);
                           } else {
@@ -255,7 +260,7 @@ class AnswerWidget extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: AppSize.paddingSizeM),
               child: Text(
-                this.answer,
+                this.answer.trim(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: (isMost || isLeast)

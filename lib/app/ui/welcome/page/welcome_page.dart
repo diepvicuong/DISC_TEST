@@ -3,6 +3,7 @@ import 'package:disc_test/app/common/custom_body_background.dart';
 import 'package:disc_test/app/res/colors.dart';
 import 'package:disc_test/app/res/sizes.dart';
 import 'package:disc_test/app/res/styles.dart';
+import 'package:disc_test/app/routes/app_pages.dart';
 import 'package:disc_test/app/ui/welcome/page/help_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,8 +41,7 @@ class WelcomePage extends StatelessWidget {
                         const SizedBox(height: AppSize.sizedBoxHeightS),
                         GestureDetector(
                           onTap: () {
-                            Get.to(() => HelpPage(),
-                                transition: Transition.downToUp);
+                            Get.toNamed(Routes.HELP_PAGE);
                           },
                           child: Align(
                               alignment: Alignment.centerRight,
@@ -102,7 +102,9 @@ class WelcomePage extends StatelessWidget {
                     minimumSize:
                         Size(AppSize.buttonMinWidth, AppSize.buttonMinHeight),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(Routes.LOGIN_PAGE);
+                  },
                 ),
               ),
             )

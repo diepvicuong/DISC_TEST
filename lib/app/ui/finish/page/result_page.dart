@@ -3,6 +3,7 @@ import 'package:disc_test/app/common/custom_body_background.dart';
 import 'package:disc_test/app/res/colors.dart';
 import 'package:disc_test/app/res/sizes.dart';
 import 'package:disc_test/app/res/styles.dart';
+import 'package:disc_test/app/routes/app_pages.dart';
 import 'package:disc_test/app/ui/finish/page/send_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -98,7 +99,9 @@ class ResultPage extends StatelessWidget {
                         minimumSize: Size(
                             AppSize.buttonMinWidth, AppSize.buttonMinHeight),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.offAllNamed(Routes.INITIAL);
+                      },
                     ),
                     SizedBox(width: AppSize.sizeBoxWidthL),
                     ElevatedButton(
@@ -109,8 +112,7 @@ class ResultPage extends StatelessWidget {
                           minimumSize: Size(
                               AppSize.buttonMinWidth, AppSize.buttonMinHeight)),
                       onPressed: () {
-                        Get.to(SendPage(),
-                            transition: Transition.rightToLeftWithFade);
+                        Get.toNamed(Routes.SEND_PAGE);
                       },
                     ),
                   ],

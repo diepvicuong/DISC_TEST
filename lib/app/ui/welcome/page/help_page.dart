@@ -3,6 +3,7 @@ import 'package:disc_test/app/common/custom_body_background.dart';
 import 'package:disc_test/app/res/colors.dart';
 import 'package:disc_test/app/res/sizes.dart';
 import 'package:disc_test/app/res/styles.dart';
+import 'package:disc_test/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -71,7 +72,9 @@ class HelpPage extends StatelessWidget {
                     minimumSize:
                         Size(AppSize.buttonMinWidth, AppSize.buttonMinHeight),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(Routes.LOGIN_PAGE);
+                  },
                 ),
               ),
             )

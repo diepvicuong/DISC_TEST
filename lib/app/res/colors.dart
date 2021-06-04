@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
-  static final Color kprimaryColor = Color(0xff705f99);
-  static final Color kprimaryColorLight = Color(0xff9f8cca);
+  static const Color kprimaryColor = Color(0xff705f99);
+  static const Color kprimaryColorLight = Color(0xff9f8cca);
 
-  static final Color kSecondaryColor = Colors.white;
+  static const Color kSecondaryColor = Colors.white;
 
-  static final Color disableButtonColor = Colors.grey;
-  static final Color enableMostColor = Color(0xff6dd3bf);
-  static final Color enableLeastColor = Color(0xfffc3529);
-  static final Color mostBtnColor = Color(0xff37a18f);
-  static final Color leastBtnColor = Color(0xfffc3529);
+  static const Color disableButtonColor = Colors.grey;
+  static const Color enableMostColor = Color(0xff6dd3bf);
+  static const Color enableLeastColor = Color(0xfffc3529);
+  static const Color mostBtnColor = Color(0xff37a18f);
+  static const Color leastBtnColor = Color(0xfffc3529);
 }

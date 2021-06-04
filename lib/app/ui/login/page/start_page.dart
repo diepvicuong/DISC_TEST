@@ -4,22 +4,12 @@ import 'package:disc_test/app/controllers/question/question_controller.dart';
 import 'package:disc_test/app/res/colors.dart';
 import 'package:disc_test/app/res/sizes.dart';
 import 'package:disc_test/app/res/styles.dart';
+import 'package:disc_test/app/routes/app_pages.dart';
 import 'package:disc_test/app/ui/question/page/question_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class StartPage extends StatefulWidget {
-  @override
-  _StartPageState createState() => _StartPageState();
-}
-
-class _StartPageState extends State<StartPage> {
-  @override
-  void initState() {
-    super.initState();
-    Get.find<QuestionController>().getAllQuestion();
-  }
-
+class StartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,13 +65,15 @@ class _StartPageState extends State<StartPage> {
                         ),
                         onPressed: () {
                           Get.defaultDialog(
-                              title: "Notification",
-                              content: Text("Are you ready to do the test"),
-                              onConfirm: () {
-                                Get.to(() => QuestionPage());
-                              },
-                              onCancel: () {},
-                              barrierDismissible: false);
+                            title: "Notification",
+                            content: Text("Are you ready to do the test"),
+                            onConfirm: () {
+                              Get.back();
+                              Get.offNamed(Routes.QUESTION_PAGE);
+                            },
+                            onCancel: () {},
+                            barrierDismissible: false,
+                          );
                         },
                       ),
                     ],

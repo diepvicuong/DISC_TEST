@@ -3,6 +3,7 @@ import 'package:disc_test/app/common/custom_body_background.dart';
 import 'package:disc_test/app/res/colors.dart';
 import 'package:disc_test/app/res/sizes.dart';
 import 'package:disc_test/app/res/styles.dart';
+import 'package:disc_test/app/routes/app_pages.dart';
 import 'send_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -54,8 +55,7 @@ class FinishPage extends StatelessWidget {
                             text: 'Xem ket qua',
                             onTap: () {
                               print('Xem ket qua');
-                              Get.to(ResultPage(),
-                                  transition: Transition.rightToLeftWithFade);
+                              Get.toNamed(Routes.RESULT_PAGE);
                             },
                           )),
                           const SizedBox(
@@ -67,7 +67,7 @@ class FinishPage extends StatelessWidget {
                             text: 'Gui ket qua',
                             onTap: () {
                               //handle tap
-                              Get.to(SendPage(), transition: Transition.zoom);
+                              Get.toNamed(Routes.SEND_PAGE);
                             },
                           )),
                           const SizedBox(
@@ -98,14 +98,16 @@ class FinishPage extends StatelessWidget {
                 child: Center(
                   child: ElevatedButton.icon(
                     icon: Icon(Icons.home),
-                    label: Text('Home'),
+                    label: Text('Trang chu'),
                     style: ElevatedButton.styleFrom(
                       primary: AppColor.mostBtnColor,
                       shape: StadiumBorder(),
                       minimumSize:
                           Size(AppSize.buttonMinWidth, AppSize.buttonMinHeight),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.offAllNamed(Routes.INITIAL);
+                    },
                   ),
                 ),
               ),

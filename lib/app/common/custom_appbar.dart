@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppbarBackBtn extends StatelessWidget {
+  final List<Widget>? action;
+
+  const AppbarBackBtn({Key? key, this.action}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -13,6 +17,7 @@ class AppbarBackBtn extends StatelessWidget {
           Get.back();
         },
       ),
+      actions: this.action,
     );
   }
 }

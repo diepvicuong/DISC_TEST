@@ -1,5 +1,7 @@
 import 'package:disc_test/app/bindings/question_binding.dart';
 import 'package:disc_test/app/controllers/question/question_controller.dart';
+import 'package:disc_test/app/res/colors.dart';
+import 'package:disc_test/app/ui/login/page/login_page.dart';
 import 'package:disc_test/app/ui/login/page/start_page.dart';
 import 'package:disc_test/app/ui/question/page/question_page.dart';
 import 'package:disc_test/app/ui/welcome/page/help_page.dart';
@@ -21,13 +23,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        backgroundColor: Colors.amber,
+        backgroundColor: AppColor.kprimaryColor,
         primarySwatch: Colors.blue,
       ),
       home: WelcomePage(),
-      initialBinding: QuestionBinding(),
       initialRoute: Routes.INITIAL,
-      // getPages: AppPages.pages,
+      getPages: AppPages.pages,
     );
   }
 }
