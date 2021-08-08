@@ -19,4 +19,7 @@ class AppStyle {
 
   static final primaryColorBoldTextStyle =
       primaryColorTextStyle.copyWith(fontWeight: FontWeight.bold);
+
+  static final buttonTextStyle =
+      appTextStyle.copyWith(fontSize: 24);
 }
