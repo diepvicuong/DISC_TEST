@@ -10,7 +10,7 @@ import 'package:disc_test/app/module/question/page/question_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class StartPage extends StatelessWidget { 
+class StartPage extends StatelessWidget {
   final loginController = Get.find<LoginController>();
   @override
   Widget build(BuildContext context) {
@@ -52,6 +52,7 @@ class StartPage extends StatelessWidget {
                         'Xin chào ${loginController.currentUser?.name}. Bài kiểm tra này giúp bạn ôn tập những kiến thức đã học.'
                         '\n\nHãy tính toán và suy nghĩ thật kĩ để đưa ra câu trả lời chính xác nhất.',
                         style: AppStyle.contentNormalTextStyle,
+                        textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 40),
                       ElevatedButton(
@@ -68,7 +69,8 @@ class StartPage extends StatelessWidget {
                         onPressed: () {
                           Get.defaultDialog(
                             title: "Thông báo",
-                            content: Text("Bạn đã sẵn sàng làm bài kiểm tra chưa?"),
+                            content:
+                                Text("Bạn đã sẵn sàng làm bài kiểm tra chưa?"),
                             onConfirm: () {
                               Get.back();
                               Get.offNamed(Routes.QUESTION_PAGE);

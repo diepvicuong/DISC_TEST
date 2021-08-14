@@ -4,38 +4,58 @@
 
 import 'dart:convert';
 
-class User {
-    User({
-      this.name,
-      this.age,
-      required this.phoneNumber,
-    });
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-    final String? name;
-    final int? age;
-    final String phoneNumber;
+class MyUser {
+  MyUser({
+    required this.id,
+    required this.phoneNumber,
+    this.name,
+    this.age,
+    this.createdAt,
+  });
 
-    User copyWith({
-        String? id,
-        String? name,
-        int? age,
-        String? phoneNumber,
-    }) => 
-        User(
-            name: name ?? this.name,
-            age: age ?? this.age,
-            phoneNumber: phoneNumber ?? this.phoneNumber,
-        );
+  final String id;
+  final String phoneNumber;
 
-    factory User.fromJson(Map<String, dynamic> json) => User(
-        name: json["name"] == null ? null : json["name"],
-        age: json["age"] == null ? null : json["age"],
-        phoneNumber: json["phoneNumber"] == null ? null : json["phoneNumber"],
-    );
+  String? name;
+  int? age;
+  Timestamp? createdAt;
 
-    Map<String, dynamic> toJson() => {
-        "name": name == null ? null : name,
-        "age": age == null ? null : age,
-        "phoneNumber": phoneNumber == null ? null : phoneNumber,
-    };
+  MyUser copyWith({
+    String? id,
+    String? name,
+    int? age,
+    String? phoneNumber,
+  }) =>
+      MyUser(
+          id: id ?? this.id,
+          name: name ?? this.name,
+          age: age ?? this.age,
+          phoneNumber: phoneNumber ?? this.phoneNumber,
+          createdAt: createdAt ?? this.createdAt);
+
+  factory MyUser.fromJson(Map<String, dynamic> json) => MyUser(
+        id: json["userId"],
+        name: json["name"],
+        age: json["age"],
+        phoneNumber: json["phoneNumber"],
+        createdAt: json["createdAt"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "userId": id,
+        "name": name,
+        "age": age,
+        "phoneNumber": phoneNumber,
+        "createdAt": createdAt,
+      };
+
+  factory MyUser.fromDoc(DocumentSnapshot doc) => MyUser(
+        id: doc.id,
+        name: doc["name"],
+        age: doc["age"],
+        phoneNumber: doc["phoneNumber"],
+        createdAt: doc["createdAt"],
+      );
 }

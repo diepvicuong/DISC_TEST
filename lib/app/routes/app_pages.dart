@@ -1,8 +1,9 @@
 import 'package:disc_test/app/module/finish/page/finish_page.dart';
 import 'package:disc_test/app/module/finish/page/result_page.dart';
 import 'package:disc_test/app/module/login/bindings/login_binding.dart';
-import 'package:disc_test/app/module/login/page/singup_page.dart';
+import 'package:disc_test/app/module/login/page/register_page.dart';
 import 'package:disc_test/app/module/login/page/login_page.dart';
+import 'package:disc_test/app/module/login/page/sigup_page.dart';
 import 'package:disc_test/app/module/login/page/start_page.dart';
 import 'package:disc_test/app/module/question/binding/question_binding.dart';
 import 'package:disc_test/app/module/question/page/question_page.dart';
@@ -25,6 +26,15 @@ class AppPages {
     GetPage(
       name: Routes.LOGIN_PAGE,
       page: () => LoginPage(),
+      // binding: LoginBinding()
+    ),
+    GetPage(
+      name: Routes.REGISTER_PAGE,
+      page: () => RegisterPage(),
+    ),
+    GetPage(
+      name: Routes.SIGNUP_PAGE,
+      page: () => SignUpScreen(),
     ),
     GetPage(
       name: Routes.START_PAGE,
@@ -42,10 +52,6 @@ class AppPages {
     GetPage(
       name: Routes.RESULT_PAGE,
       page: () => ResultPage(),
-    ),
-    GetPage(
-      name: Routes.SIGNUP_PAGE,
-      page: () => SignupPage(),
     ),
   ];
 }

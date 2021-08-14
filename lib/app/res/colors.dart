@@ -11,4 +11,6 @@ class AppColor {
   static const Color enableLeastColor = Color(0xfffc3529);
   static const Color mostBtnColor = Color(0xff37a18f);
   static const Color leastBtnColor = Color(0xfffc3529);
+
+  static const Color oragne = Colors.orange;
 }

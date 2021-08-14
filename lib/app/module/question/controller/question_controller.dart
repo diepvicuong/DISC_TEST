@@ -34,7 +34,7 @@ class QuestionController extends GetxController {
   getAllQuestion() {
     questionRepository.fetchAllQuestion().then((data) {
       if (data is List<Question>) {
-        _listQuestion.value = data;
+        _listQuestion.value = data..shuffle();
       }
     });
   }

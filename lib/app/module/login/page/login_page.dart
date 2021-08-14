@@ -3,10 +3,12 @@ import 'package:disc_test/app/common/custom_body_background.dart';
 import 'package:disc_test/app/common/snackbar.dart';
 import 'package:disc_test/app/common/utils.dart';
 import 'package:disc_test/app/module/login/controller/login_controller.dart';
+import 'package:disc_test/app/res/colors.dart';
 import 'package:disc_test/app/res/sizes.dart';
 import 'package:disc_test/app/res/styles.dart';
 import 'package:disc_test/app/routes/app_pages.dart';
 import 'package:disc_test/app/module/login/widget/pin_code_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,11 +28,13 @@ class LoginPage extends StatelessWidget {
                   child: InkWell(
                       onTap: () {
                         //handle tap
-                        Get.offNamed(Routes.SIGNUP_PAGE);
+                        Get.toNamed(Routes.SIGNUP_PAGE);
                       },
                       child: Text(
                         'Đăng ký mới',
-                        style: AppStyle.buttonTextStyle,)),
+                        style: AppStyle.buttonTextStyle
+                            .copyWith(color: AppColor.oragne),
+                      )),
                 ),
               )
             ],
@@ -43,18 +47,20 @@ class LoginPage extends StatelessWidget {
           SizedBox(height: AppSize.sizedBoxHeightM),
           PinCodeWidget(
             context: context,
+            width: kIsWeb ? 300 : null,
             length: 10,
-            onFinish: (text) async{
+            onFinish: (text) async {
               print('phone number: $text');
               Utils.showLoadingDialog(context);
-              final result = await Get.find<LoginController>().login(phoneNumber: text);
+              final result = await Get.find<LoginController>()
+                  .loginViaFirebase(phoneNumber: text);
               Get.back();
-              if(result){
+              if (result) {
                 Get.offNamed(Routes.START_PAGE);
-                return;
-              }
-              ScaffoldMessenger.of(context)
+              } else {
+                ScaffoldMessenger.of(context)
                     .showSnackBar(AppSnackbar.failedSnackbar);
+              }
             },
           ),
         ],

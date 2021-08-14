@@ -1,32 +1,115 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:disc_test/app/data/models/user/user.dart';
 import 'package:disc_test/app/data/repository/user_repository.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:disc_test/app/res/constant.dart';
+import 'package:get/get.dart';
 
-class LoginController extends GetxController{
+class LoginController extends GetxController {
   final UserRepository userRepository;
 
   LoginController({required this.userRepository});
 
-  User? _currentUser;
-  User? get currentUser => _currentUser;
+  MyUser? _currentUser;
+  MyUser? get currentUser => _currentUser;
 
-  Future<bool> signup({required String phoneNumber, int? age, String? name}) async{
-    final newUser = User(phoneNumber: phoneNumber, age: age, name: name);
-    final result = await userRepository.sigup(user: newUser);
-    if(result == true){
-      _currentUser = newUser;
+  Timer? _countDownTimer;
+
+  RxInt _countDownOtp = 60.obs;
+  int get countDownOtp => _countDownOtp.value;
+
+  /// Using Rest Api Function
+  // Future<bool> signupViaRestApi(
+  //     {required String phoneNumber, int? age, String? name}) async {
+  //   final newUser = MyUser(phoneNumber: phoneNumber, age: age, name: name);
+  //   final result = await userRepository.sigupViaRestApi(user: newUser);
+  //   if (result == true) {
+  //     _currentUser = newUser;
+  //   }
+  //   return result;
+  // }
+
+  // Future<bool> loginViaRestApi({required String phoneNumber}) async {
+  //   final formatPhonenumber = "+84" + phoneNumber.substring(1);
+  //   final user =
+  //       await userRepository.loginViaRestApi(phoneNumber: formatPhonenumber);
+  //   if (user != null) {
+  //     _currentUser = user;
+  //     return true;
+  //   }
+
+  //   return false;
+  // }
+
+  /// Using Firebase function
+  Future<void> sendOtp({required String phoneNumber}) async {
+    _startTimer();
+    await userRepository.sendOtp(phoneNumber: phoneNumber);
+  }
+
+  Future<bool> signupViaFirebase({required String smsOtp}) async {
+    final firebaseUser = await userRepository.signUpViaFirebase(smsOtp: smsOtp);
+    if (firebaseUser != null) {
+      _currentUser = MyUser(
+          id: firebaseUser.uid, phoneNumber: firebaseUser.phoneNumber ?? '');
+
+      return true;
+    }
+
+    return false;
+  }
+
+  Future<bool> loginViaFirebase({required String phoneNumber}) async {
+    final formatPhonenumber = "+84" + phoneNumber.substring(1);
+
+    final user =
+        await userRepository.loginViaFirebase(phoneNumber: formatPhonenumber);
+    if (user != null) {
+      _currentUser = user;
+      return true;
+    }
+    return false;
+  }
+
+  /// Register function
+  Future<bool> registerUser({int? age, String? name}) async {
+    bool result = false;
+    if (_currentUser != null) {
+      _currentUser!.age = age;
+      _currentUser!.name = name;
+      result = await userRepository.registerUser(_currentUser!);
     }
 
     return result;
   }
 
-  Future<bool> login({required String phoneNumber}) async{
-    final user = await userRepository.login(phoneNumber: phoneNumber);
-    if(user!= null){
-      _currentUser = user;
-      return true;
+  /// Handle Timer
+  void _startTimer() {
+    const oneSec = const Duration(seconds: 1);
+    if (_countDownTimer != null) {
+      _countDownTimer?.cancel();
+      _countDownTimer = null;
     }
+    _countDownTimer = new Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_countDownOtp.value == 0) {
+          _countDownOtp.value = AppConstant.timeoutOtp;
+          timer.cancel();
+        } else {
+          _countDownOtp.value--;
+        }
+      },
+    );
+  }
 
-    return false;
+  @override
+  void dispose() {
+    if (_countDownTimer != null) {
+      _countDownTimer?.cancel();
+      _countDownTimer = null;
+    }
+    super.dispose();
   }
 }

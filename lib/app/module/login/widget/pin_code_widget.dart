@@ -9,6 +9,7 @@ class PinCodeWidget extends StatefulWidget {
   final PinTheme pinTheme;
   final double spacing;
   final Function(String text)? onFinish;
+  final double? width;
 
   const PinCodeWidget({
     Key? key,
@@ -17,6 +18,7 @@ class PinCodeWidget extends StatefulWidget {
     this.pinTheme = const PinTheme.defaults(),
     this.spacing = 10,
     this.onFinish,
+    this.width,
   }) : super(key: key);
 
   @override
@@ -166,7 +168,9 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
           child: AnimatedContainer(
             curve: Curves.easeInOut,
             duration: const Duration(milliseconds: 150),
-            width: widget.pinTheme.fieldWidth,
+            width: widget.width != null
+                ? widget.width! / widget.length
+                : widget.pinTheme.fieldWidth,
             height: widget.pinTheme.fieldHeight,
             decoration: BoxDecoration(
                 border: Border(

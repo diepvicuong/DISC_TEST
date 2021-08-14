@@ -10,11 +10,11 @@ import 'package:disc_test/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SignupPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
   String? phoneNumber;
   String? name;
   int? age;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +37,8 @@ class SignupPage extends StatelessWidget {
                     title: 'Họ tên: ',
                     onChange: (value) {
                       name = value;
-                    },),
+                    },
+                  ),
                   const SizedBox(height: AppSize.sizedBoxHeightM),
                   CustomInfoWidget(
                     title: 'Độ tuổi: ',
@@ -66,24 +67,21 @@ class SignupPage extends StatelessWidget {
                       minimumSize:
                           Size(AppSize.buttonMinWidth, AppSize.buttonMinHeight),
                     ),
-                    onPressed: () async{
-                      if(phoneNumber == null || name == null || age == null ){
+                    onPressed: () async {
+                      if (phoneNumber == null || name == null || age == null) {
                         print('Missing info');
-                         ScaffoldMessenger.of(context)
-                          .showSnackBar(AppSnackbar.failedSnackbar);
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(AppSnackbar.failedSnackbar);
                         return;
                       }
 
                       Utils.showLoadingDialog(context);
-                      final result = await Get.find<LoginController>().signup(
-                        phoneNumber: phoneNumber!,
-                        name: name,
-                        age: age
-                      );
+                      final result = await Get.find<LoginController>()
+                          .registerUser(name: name, age: age);
                       Get.back();
-                      if(result == true){
-                         Get.offNamed(Routes.START_PAGE);
-                         return;
+                      if (result == true) {
+                        Get.offNamed(Routes.START_PAGE);
+                        return;
                       }
                       ScaffoldMessenger.of(context)
                           .showSnackBar(AppSnackbar.failedSnackbar);
@@ -104,7 +102,8 @@ class CustomInfoWidget extends StatelessWidget {
   final TextInputType? keyboardType;
   final ValueChanged? onChange;
 
-  const CustomInfoWidget({Key? key, required this.title, this.keyboardType, this.onChange})
+  const CustomInfoWidget(
+      {Key? key, required this.title, this.keyboardType, this.onChange})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

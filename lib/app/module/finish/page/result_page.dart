@@ -6,7 +6,7 @@ import 'package:disc_test/app/res/colors.dart';
 import 'package:disc_test/app/res/sizes.dart';
 import 'package:disc_test/app/res/styles.dart';
 import 'package:disc_test/app/routes/app_pages.dart';
-import 'package:disc_test/app/module/login/page/singup_page.dart';
+import 'package:disc_test/app/module/login/page/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
