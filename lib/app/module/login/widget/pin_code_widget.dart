@@ -47,6 +47,7 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
       if (_inputList.join("") != currentText) {
         if (currentText.length >= widget.length) {
           _focusNode!.unfocus();
+          _textEditingController?.clear();
           widget.onFinish!(currentText);
         }
       }

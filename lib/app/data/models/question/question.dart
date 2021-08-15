@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:disc_test/app/common/utils.dart';
+
 class Question {
   Question({
     required this.id,
@@ -39,7 +41,7 @@ class Question {
         question: json["question"] == null ? '' : json["question"],
         answer: json["answer"] == null ? '' : json["answer"],
         suggestions: json["suggestions"] == null
-            ? []
+            ? Utils.createFakeAnswerList(json["answer"])
             : List<String>.from(json["suggestions"].map((x) => x)),
         id: json["id"],
       );

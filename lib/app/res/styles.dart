@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppStyle {
   static final appTextStyle = TextStyle(color: Colors.white);
-  static final indicatorTextStyle = appTextStyle.copyWith(fontSize: 14.0);
+  static final indicatorTextStyle = appTextStyle.copyWith(fontSize: 30.0);
   static final titleNormalTextStyle = appTextStyle.copyWith(fontSize: 28.0);
 
   static final titleBoldTextStyle =
@@ -20,6 +20,5 @@ class AppStyle {
   static final primaryColorBoldTextStyle =
       primaryColorTextStyle.copyWith(fontWeight: FontWeight.bold);
 
-  static final buttonTextStyle =
-      appTextStyle.copyWith(fontSize: 24);
+  static final buttonTextStyle = appTextStyle.copyWith(fontSize: 24);
 }

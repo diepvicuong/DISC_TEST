@@ -16,7 +16,7 @@ class LoginController extends GetxController {
 
   Timer? _countDownTimer;
 
-  RxInt _countDownOtp = 60.obs;
+  RxInt _countDownOtp = AppConstant.timeoutOtp.obs;
   int get countDownOtp => _countDownOtp.value;
 
   /// Using Rest Api Function
@@ -60,11 +60,10 @@ class LoginController extends GetxController {
     return false;
   }
 
-  Future<bool> loginViaFirebase({required String phoneNumber}) async {
-    final formatPhonenumber = "+84" + phoneNumber.substring(1);
-
-    final user =
-        await userRepository.loginViaFirebase(phoneNumber: formatPhonenumber);
+  Future<bool> loginViaFirebase(
+      {required String phoneNumber, required String password}) async {
+    final user = await userRepository.loginViaFirebase(
+        phoneNumber: phoneNumber, password: password);
     if (user != null) {
       _currentUser = user;
       return true;
@@ -72,12 +71,17 @@ class LoginController extends GetxController {
     return false;
   }
 
+  Future<bool> isExist({required String phoneNumber}) async {
+    return await userRepository.isExist(phoneNumber: phoneNumber);
+  }
+
   /// Register function
-  Future<bool> registerUser({int? age, String? name}) async {
+  Future<bool> registerUser({int? age, String? name, String? password}) async {
     bool result = false;
     if (_currentUser != null) {
       _currentUser!.age = age;
       _currentUser!.name = name;
+      _currentUser!.password = password;
       result = await userRepository.registerUser(_currentUser!);
     }
 

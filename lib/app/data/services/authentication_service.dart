@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 
 class FirebaseAuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
@@ -9,7 +10,7 @@ class FirebaseAuthService {
     ConfirmationResult confirmationResult =
         await _auth.signInWithPhoneNumber(phoneNumber);
 
-    print('Send Otp success');
+    print('Send Otp success: ' + confirmationResult.verificationId);
     webConfirmationResult = confirmationResult;
   }
 

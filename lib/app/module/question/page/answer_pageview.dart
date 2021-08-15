@@ -65,6 +65,7 @@ class ListAnswerWidget extends StatefulWidget {
 class _ListAnswerWidgetState extends State<ListAnswerWidget>
     with AutomaticKeepAliveClientMixin {
   int? _indexChoosing;
+  final questionController = Get.find<QuestionController>();
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -119,7 +120,7 @@ class _ListAnswerWidgetState extends State<ListAnswerWidget>
                     child: ElevatedButton(
                       child: widget.page == PageViewStatus.ending.index
                           ? Text('Hoàn thành', style: AppStyle.buttonTextStyle)
-                          : Text('Tiếp theo',  style: AppStyle.buttonTextStyle),
+                          : Text('Tiếp theo', style: AppStyle.buttonTextStyle),
                       style: ElevatedButton.styleFrom(
                         primary: isEnabledButton()
                             ? AppColor.kprimaryColor
@@ -135,20 +136,24 @@ class _ListAnswerWidgetState extends State<ListAnswerWidget>
 
                             Get.defaultDialog(
                                 title: 'Thông báo',
-                                content:
-                                    Text('Bạn muốn hoàn thành bài thi?'),
+                                content: Text('Bạn muốn hoàn thành bài thi?'),
                                 onConfirm: () {
                                   Get.back();
-                                  Get.toNamed(Routes.RESULT_PAGE);
-                                  if (widget.answer == widget.suggestionList[_indexChoosing ?? 0]) {
-                                    Get.find<QuestionController>().increaseScrore();
+                                  if (widget.answer ==
+                                      widget.suggestionList[
+                                          _indexChoosing ?? 0]) {
+                                    Get.find<QuestionController>()
+                                        .increaseScrore();
                                   }
+
+                                  questionController.finish();
                                 },
                                 onCancel: () {},
                                 barrierDismissible: false);
                           } else {
                             Get.find<QuestionController>().nextPage();
-                            if (widget.answer == widget.suggestionList[_indexChoosing ?? 0]) {
+                            if (widget.answer ==
+                                widget.suggestionList[_indexChoosing ?? 0]) {
                               Get.find<QuestionController>().increaseScrore();
                             }
                           }

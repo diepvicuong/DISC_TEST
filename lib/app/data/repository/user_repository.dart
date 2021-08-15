@@ -75,7 +75,14 @@ class UserRepository {
     return await _databaseService.registerUser(user);
   }
 
-  Future<MyUser?> loginViaFirebase({required String phoneNumber}) async {
-    return await _databaseService.isExistUser(phoneNumber: phoneNumber);
+  Future<MyUser?> loginViaFirebase(
+      {required String phoneNumber, required String password}) async {
+    return await _databaseService.isExistUser(
+        phoneNumber: phoneNumber, password: password);
+  }
+
+  Future<bool> isExist({required String phoneNumber}) async {
+    return await _databaseService.checkPhoneNumberIsExist(
+        phoneNumber: phoneNumber);
   }
 }

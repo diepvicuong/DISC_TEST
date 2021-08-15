@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RegisterPage extends StatelessWidget {
-  String? phoneNumber;
+  String? password;
   String? name;
   int? age;
 
@@ -49,10 +49,11 @@ class RegisterPage extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSize.sizedBoxHeightM),
                   CustomInfoWidget(
-                    title: 'Số điện thoại: ',
+                    title: 'Mật khẩu(*): ',
                     keyboardType: TextInputType.number,
+                    obscureText: true,
                     onChange: (value) {
-                      phoneNumber = value;
+                      password = value;
                     },
                   ),
                   const SizedBox(height: AppSize.sizedBoxHeightXL),
@@ -68,23 +69,24 @@ class RegisterPage extends StatelessWidget {
                           Size(AppSize.buttonMinWidth, AppSize.buttonMinHeight),
                     ),
                     onPressed: () async {
-                      if (phoneNumber == null || name == null || age == null) {
+                      if (password == null || name == null || age == null) {
                         print('Missing info');
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(AppSnackbar.failedSnackbar);
+                        Get.snackbar("Xác thực tại khoản không thành công",
+                            'Vui lòng điền đầy đủ thông tin');
                         return;
                       }
 
                       Utils.showLoadingDialog(context);
                       final result = await Get.find<LoginController>()
-                          .registerUser(name: name, age: age);
+                          .registerUser(
+                              name: name, age: age, password: password);
                       Get.back();
                       if (result == true) {
                         Get.offNamed(Routes.START_PAGE);
                         return;
                       }
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(AppSnackbar.failedSnackbar);
+                      Get.snackbar("Xác thực tại khoản không thành công",
+                          'Vui lòng thử lại');
                     },
                   ),
                 ],
@@ -101,9 +103,14 @@ class CustomInfoWidget extends StatelessWidget {
   final String title;
   final TextInputType? keyboardType;
   final ValueChanged? onChange;
+  final bool? obscureText;
 
   const CustomInfoWidget(
-      {Key? key, required this.title, this.keyboardType, this.onChange})
+      {Key? key,
+      required this.title,
+      this.keyboardType,
+      this.onChange,
+      this.obscureText})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -134,6 +141,7 @@ class CustomInfoWidget extends StatelessWidget {
                   disabledBorder: InputBorder.none,
                 ),
                 onChanged: onChange,
+                obscureText: obscureText ?? false,
               ),
             ))
       ],

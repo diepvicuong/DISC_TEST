@@ -14,6 +14,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   intl_phone_number_input: ^0.7.0+2
 
+  # Audio
+  # just_audio: ^0.9.5
+  assets_audio_player: ^3.0.3+6
+
   # Http related
   dio: ^4.0.0
   get: ^4.1.4
@@ -46,6 +50,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/audio/
   
   
   

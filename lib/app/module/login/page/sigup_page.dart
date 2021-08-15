@@ -24,7 +24,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _otpController = TextEditingController();
   final LoginController loginController = Get.find<LoginController>();
 
-  PhoneNumber number = PhoneNumber(isoCode: 'JS'); // 画面に表示する国旗、国コードの初期値
+  PhoneNumber number = PhoneNumber(isoCode: 'VN'); // 画面に表示する国旗、国コードの初期値
   String phoneNumber = '';
   String otp = '';
   @override
@@ -142,7 +142,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       Obx(() => loginController.countDownOtp ==
                                               AppConstant.timeoutOtp
                                           ? InkWell(
-                                              onTap: () {
+                                              onTap: () async {
                                                 if (_phoneNumberController
                                                         .text.length <
                                                     9) {
@@ -159,6 +159,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                 } else {
                                                   formatPhonenumber =
                                                       phoneNumber;
+                                                }
+                                                if (await loginController
+                                                    .isExist(
+                                                        phoneNumber:
+                                                            formatPhonenumber)) {
+                                                  Get.snackbar(
+                                                      "Đăng kí thất bại",
+                                                      'Tài khoản này đã tồn tại. Quay lại trang đăng nhập');
+
+                                                  return;
                                                 }
 
                                                 loginController.sendOtp(
@@ -203,9 +213,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                                     if (!AppRegex.digits
                                         .hasMatch(_otpController.text)) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                              AppSnackbar.failedSnackbar);
+                                      Get.snackbar("Đăng kí không thành công",
+                                          'Vui lòng nhập đúng mã OTP đã gửi đến điện thoại của bạn');
                                       return;
                                     }
 
@@ -219,9 +228,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     if (result == true) {
                                       Get.offNamed(Routes.REGISTER_PAGE);
                                     } else {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                              AppSnackbar.failedSnackbar);
+                                      Get.snackbar("Đăng kí không thành công",
+                                          'Vui lòng nhập đúng mã OTP đã gửi đến điện thoại của bạn');
                                     }
                                   },
                                   child: Text(

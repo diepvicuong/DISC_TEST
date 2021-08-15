@@ -99,9 +99,12 @@ class CustomPageIndicator extends GetView<QuestionController> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                  "Cau hoi ${controller.currentPageView + 1}/${controller.listQuestion.length}",
+                  "Câu hỏi ${controller.currentPageView + 1}/${controller.listQuestion.length}",
                   style: AppStyle.indicatorTextStyle),
-              Text('00:25:00', style: AppStyle.indicatorTextStyle),
+              Text(controller.countDownQuestionInStr,
+                  style: controller.countDownQuestionSec <= 10
+                      ? AppStyle.indicatorTextStyle.copyWith(color: Colors.red)
+                      : AppStyle.indicatorTextStyle),
             ],
           ),
           Row(

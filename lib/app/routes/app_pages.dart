@@ -24,10 +24,9 @@ class AppPages {
       page: () => HelpPage(),
     ),
     GetPage(
-      name: Routes.LOGIN_PAGE,
-      page: () => LoginPage(),
-      // binding: LoginBinding()
-    ),
+        name: Routes.LOGIN_PAGE,
+        page: () => LoginPage(),
+        binding: LoginBinding()),
     GetPage(
       name: Routes.REGISTER_PAGE,
       page: () => RegisterPage(),

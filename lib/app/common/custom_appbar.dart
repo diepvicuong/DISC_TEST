@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,19 +9,19 @@ class AppbarBackBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      leading: kIsWeb
-          ? SizedBox.shrink()
-          : IconButton(
+    return !kIsWeb
+        ? AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: IconButton(
               icon: Icon(Icons.chevron_left),
               onPressed: () {
                 Get.back();
               },
             ),
-      actions: this.action,
-    );
+            actions: this.action,
+          )
+        : SizedBox.shrink();
   }
 }
 
