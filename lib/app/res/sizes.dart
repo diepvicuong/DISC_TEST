@@ -20,7 +20,8 @@ class AppSize {
   static const ratioBottomButton = 0.1;
 
   static const double buttonMinWidth = 240.0;
-  static const double buttonMinHeight = 80.0;
+  static const double buttonMinHeightWeb = 80.0;
+  static const double buttonMinHeight = 50.0;
 }
 
 enum PageViewStatus {

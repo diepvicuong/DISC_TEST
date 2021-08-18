@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1097621780184",
+    "project_id": "nordic-ecommerce",
+    "storage_bucket": "nordic-ecommerce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097621780184:android:83e6b4766b628d09a909ad",
+        "android_client_info": {
+          "package_name": "com.giupemhoctot.io"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1097621780184-snneeh8p7ebu58ga0dr9ulu62u15klui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQZx6oNIh7vwe0sO82Xuo_8XeLFwcE_jw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1097621780184-snneeh8p7ebu58ga0dr9ulu62u15klui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1097621780184-3u9gsj7epud9qbt4p04s40av76mstavo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.nordicEcommerce"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

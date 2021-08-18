@@ -31,7 +31,7 @@ class FinishPage extends StatelessWidget {
                         AppbarTransparent(),
                         Text(
                           'Bai trac nghiem DISC',
-                          style: AppStyle.titleBoldTextStyle,
+                          style: AppStyle.titleBoldTextStyleWeb,
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: AppSize.sizedBoxHeightXL),

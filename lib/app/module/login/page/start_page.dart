@@ -7,6 +7,7 @@ import 'package:disc_test/app/res/sizes.dart';
 import 'package:disc_test/app/res/styles.dart';
 import 'package:disc_test/app/routes/app_pages.dart';
 import 'package:disc_test/app/module/question/page/question_page.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,7 +30,7 @@ class StartPage extends StatelessWidget {
                     children: [
                       Text(
                         'Bài kiểm tra toán',
-                        style: AppStyle.titleBoldTextStyle,
+                        style: AppStyle.titleBoldTextStyleWeb,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: AppSize.sizedBoxHeightL),
@@ -63,14 +64,13 @@ class StartPage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           primary: AppColor.mostBtnColor,
                           shape: StadiumBorder(),
-                          minimumSize: Size(
-                              AppSize.buttonMinWidth, AppSize.buttonMinHeight),
+                          minimumSize: Size(AppSize.buttonMinWidth,
+                              kIsWeb ? AppSize.buttonMinHeight : 50),
                         ),
                         onPressed: () {
                           Get.defaultDialog(
                             title: "Thông báo",
-                            content:
-                                Text("Bạn đã sẵn sàng làm bài kiểm tra chưa?"),
+                            content: Text("Bạn đã sẵn sàng làm bài kiểm tra?"),
                             onConfirm: () {
                               Get.back();
                               Get.offNamed(Routes.QUESTION_PAGE);

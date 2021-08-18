@@ -1,4 +1,4 @@
-package com.example.disc_test
+package com.giupemhoctot.io
 
 import io.flutter.embedding.android.FlutterActivity
 

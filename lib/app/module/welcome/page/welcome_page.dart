@@ -29,7 +29,7 @@ class WelcomePage extends StatelessWidget {
                       children: [
                         Text(
                           'GIÚP EM HỌC TỐT',
-                          style: AppStyle.titleBoldTextStyle,
+                          style: AppStyle.titleBoldTextStyleWeb,
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: AppSize.sizedBoxHeightL),
@@ -38,7 +38,7 @@ class WelcomePage extends StatelessWidget {
                           width: MediaQuery.of(context).size.width,
                           height: 400,
                           fit: BoxFit.contain,
-                        ),                      
+                        ),
                         const SizedBox(height: AppSize.sizedBoxHeightL),
                         Text(
                           'Hãy cùng tham gia\nvới chúng tôi',
@@ -78,10 +78,8 @@ class WelcomePage extends StatelessWidget {
                     AppSize.ratioBottomButton,
                 alignment: Alignment.center,
                 child: ElevatedButton(
-                  child: Text(
-                      'Làm bài kiểm tra',
-                      style: AppStyle.buttonTextStyle
-                      ),
+                  child:
+                      Text('Làm bài kiểm tra', style: AppStyle.buttonTextStyle),
                   style: ElevatedButton.styleFrom(
                     primary: AppColor.mostBtnColor,
                     shape: StadiumBorder(),

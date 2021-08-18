@@ -12,6 +12,7 @@ import 'package:disc_test/app/res/sizes.dart';
 import 'package:disc_test/app/res/styles.dart';
 import 'package:disc_test/app/routes/app_pages.dart';
 import 'package:disc_test/app/module/login/page/register_page.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -35,7 +36,7 @@ class ResultPage extends StatelessWidget {
                     children: [
                       Text(
                         'Kết quả',
-                        style: AppStyle.titleBoldTextStyle,
+                        style: AppStyle.titleBoldTextStyleWeb,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: AppSize.sizedBoxHeightL),
@@ -43,7 +44,7 @@ class ResultPage extends StatelessWidget {
                       const SizedBox(height: AppSize.sizedBoxHeightL),
                       Text(
                         'Xin chúc mừng ${Get.find<LoginController>().currentUser?.name}.\nBạn đạt được',
-                        style: AppStyle.titleBoldTextStyle,
+                        style: AppStyle.titleBoldTextStyleWeb,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: AppSize.sizedBoxHeightL),
@@ -62,22 +63,30 @@ class ResultPage extends StatelessWidget {
                           return Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('Câu ${index + 1}: ',
-                                    style: AppStyle.titleNormalTextStyle),
+                                Expanded(
+                                  child: Text(
+                                    'Câu ${(index + 1).toString().padLeft(2, '0')}: ',
+                                    style: AppStyle.titleNormalTextStyle,
+                                    textAlign: TextAlign.end,
+                                  ),
+                                ),
                                 SizedBox(
                                   width: 10,
                                 ),
-                                questionController.scoreList[index] == true
-                                    ? Text(
-                                        'Đúng',
-                                        style: AppStyle.titleNormalTextStyle
-                                            .copyWith(color: Colors.green),
-                                      )
-                                    : Text(
-                                        'Sai',
-                                        style: AppStyle.titleNormalTextStyle
-                                            .copyWith(color: Colors.red),
-                                      )
+                                Expanded(
+                                  child: questionController.scoreList[index] ==
+                                          true
+                                      ? Text(
+                                          'Đúng',
+                                          style: AppStyle.titleNormalTextStyle
+                                              .copyWith(color: Colors.green),
+                                        )
+                                      : Text(
+                                          'Sai',
+                                          style: AppStyle.titleNormalTextStyle
+                                              .copyWith(color: Colors.red),
+                                        ),
+                                )
                               ]);
                         },
                         separatorBuilder: (context, index) {
@@ -100,8 +109,11 @@ class ResultPage extends StatelessWidget {
                               style: ElevatedButton.styleFrom(
                                 primary: AppColor.mostBtnColor,
                                 shape: StadiumBorder(),
-                                minimumSize: Size(AppSize.buttonMinWidth,
-                                    AppSize.buttonMinHeight),
+                                minimumSize: Size(
+                                    AppSize.buttonMinWidth,
+                                    kIsWeb
+                                        ? AppSize.buttonMinHeightWeb
+                                        : AppSize.buttonMinHeight),
                               ),
                               onPressed: () {
                                 Get.offAllNamed(Routes.INITIAL);

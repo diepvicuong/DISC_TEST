@@ -4,6 +4,7 @@ import 'package:disc_test/app/res/colors.dart';
 import 'package:disc_test/app/res/sizes.dart';
 import 'package:disc_test/app/res/styles.dart';
 import 'package:disc_test/app/routes/app_pages.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,9 +24,15 @@ class AnswerViewPage extends StatelessWidget {
         Expanded(
             flex: 2,
             child: Center(
-                child: Text(
-              questionData.question,
-              style: AppStyle.titleBoldTextStyle,
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                questionData.question,
+                style: kIsWeb
+                    ? AppStyle.titleBoldTextStyleWeb
+                    : AppStyle.titleBoldTextStyle,
+                textAlign: TextAlign.center,
+              ),
             ))),
         Expanded(
           flex: 5,
@@ -105,8 +112,7 @@ class _ListAnswerWidgetState extends State<ListAnswerWidget>
           left: 0,
           child: Container(
               padding: EdgeInsets.symmetric(horizontal: AppSize.paddingSizeM),
-              height: MediaQuery.of(context).size.height *
-                  AppSize.ratioBottomButton,
+              height: kIsWeb ? 100 : 50,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -239,7 +245,7 @@ class AnswerWidget extends StatelessWidget {
                       color: (isTapping)
                           ? Colors.white
                           : this.answerColor ?? Colors.black,
-                      fontSize: 30),
+                      fontSize: kIsWeb ? 30 : 20),
                 ),
               ),
             ),
