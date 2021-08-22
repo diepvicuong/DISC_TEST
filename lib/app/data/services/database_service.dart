@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:disc_test/app/data/models/config/configuration.dart';
 import 'package:disc_test/app/data/models/user/user.dart';
 import 'package:disc_test/app/res/constant.dart';
 import 'package:get/get.dart';
@@ -6,6 +7,8 @@ import 'package:get/get.dart';
 final fireStore = FirebaseFirestore.instance;
 final userRef = fireStore.collection('users');
 final dataRef = fireStore.collection('data');
+final configRef = fireStore.collection('configuration');
+final configId = 'EYJ0t8q6riuP9u9ocWwr';
 final managerRef = fireStore.collection('manager');
 const managerId = "lPOc1OJeVghNtusEijMF";
 
@@ -101,5 +104,14 @@ class FirebaseDatabaseService {
 
       await batch.commit();
     } catch (err) {}
+  }
+
+  static Future<Configuration?> getConfigData() async {
+    try {
+      final configDoc = await configRef.doc(configId).get();
+      return Configuration.fromDoc(configDoc);
+    } catch (err) {
+      return null;
+    }
   }
 }

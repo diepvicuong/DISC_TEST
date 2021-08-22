@@ -1,5 +1,6 @@
 import 'package:disc_test/app/common/custom_appbar.dart';
 import 'package:disc_test/app/common/custom_body_background.dart';
+import 'package:disc_test/app/data/services/manger_service.dart';
 import 'package:disc_test/app/module/login/controller/login_controller.dart';
 import 'package:disc_test/app/module/question/controller/question_controller.dart';
 import 'package:disc_test/app/res/colors.dart';
@@ -29,7 +30,7 @@ class StartPage extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        'Bài kiểm tra toán',
+                        'Bài kiểm tra'.toUpperCase(),
                         style: AppStyle.titleBoldTextStyleWeb,
                         textAlign: TextAlign.center,
                       ),
@@ -39,12 +40,18 @@ class StartPage extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.alarm,
-                            color: AppColor.kSecondaryColor,
+                            color: Colors.black,
+                            size: 40,
                           ),
                           SizedBox(width: AppSize.sizeBoxWidthM),
                           Text(
-                            '00:25:00',
-                            style: AppStyle.appTextStyle,
+                            Duration(
+                                    seconds: ManagerService
+                                        .instance.configuration.questionTimer)
+                                .toString()
+                                .split('.')[0],
+                            style: AppStyle.titleNormalTextStyle
+                                .copyWith(color: Colors.black),
                           )
                         ],
                       ),

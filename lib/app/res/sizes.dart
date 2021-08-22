@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class AppSize {
   static const homeItemPadding = 16.0;
   static const paddingSizeS = 8.0;
@@ -20,8 +22,7 @@ class AppSize {
   static const ratioBottomButton = 0.1;
 
   static const double buttonMinWidth = 240.0;
-  static const double buttonMinHeightWeb = 80.0;
-  static const double buttonMinHeight = 50.0;
+  static double buttonMinHeight = kIsWeb ? 80.0 : 50.0;
 }
 
 enum PageViewStatus {

@@ -5,6 +5,7 @@ import 'package:disc_test/app/data/models/question/question.dart';
 import 'package:disc_test/app/data/models/user/user.dart';
 import 'package:disc_test/app/data/repository/question_repository.dart';
 import 'package:disc_test/app/data/services/audio_service.dart';
+import 'package:disc_test/app/data/services/manger_service.dart';
 import 'package:disc_test/app/module/login/controller/login_controller.dart';
 import 'package:disc_test/app/res/config.dart';
 import 'package:disc_test/app/res/constant.dart';
@@ -37,7 +38,8 @@ class QuestionController extends GetxController {
   var scoreList = List.generate(10, (index) => false);
 
   Timer? _countDownTimer;
-  RxInt _countDownQuestion = AppConstant.timeoutQuestion.obs; // in seconds
+  RxInt _countDownQuestion =
+      ManagerService.instance.configuration.questionTimer.obs; // in seconds
   int get countDownQuestionSec => _countDownQuestion.value;
   String get countDownQuestionInStr {
     final duration = Duration(seconds: _countDownQuestion.value);
@@ -89,7 +91,8 @@ class QuestionController extends GetxController {
 
   /// Handle Timer
   void _startTimer() {
-    _countDownQuestion.value = AppConstant.timeoutQuestion;
+    _countDownQuestion.value =
+        ManagerService.instance.configuration.questionTimer;
     const tenMiliSec = const Duration(seconds: 1);
     stopTimer();
     _countDownTimer = new Timer.periodic(

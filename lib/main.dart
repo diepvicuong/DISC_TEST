@@ -1,3 +1,4 @@
+import 'package:disc_test/app/data/services/manger_service.dart';
 import 'package:disc_test/app/module/finish/page/result_page.dart';
 import 'package:disc_test/app/module/login/bindings/login_binding.dart';
 import 'package:disc_test/app/module/login/controller/login_controller.dart';
@@ -16,6 +17,7 @@ import 'app/routes/app_pages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await ManagerService.instance.initialize();
 
   runApp(MyApp());
 }

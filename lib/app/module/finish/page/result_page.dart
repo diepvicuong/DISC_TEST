@@ -1,23 +1,26 @@
 import 'package:dio/dio.dart';
 import 'package:disc_test/app/common/custom_appbar.dart';
 import 'package:disc_test/app/common/custom_body_background.dart';
+import 'package:disc_test/app/common/utils.dart';
 import 'package:disc_test/app/data/models/question/question.dart';
-import 'package:disc_test/app/data/repository/question_repository.dart';
-import 'package:disc_test/app/data/repository/user_repository.dart';
-import 'package:disc_test/app/data/services/api.dart';
+import 'package:disc_test/app/module/finish/widgets/custom_spin_wheel.dart';
 import 'package:disc_test/app/module/login/controller/login_controller.dart';
 import 'package:disc_test/app/module/question/controller/question_controller.dart';
 import 'package:disc_test/app/res/colors.dart';
+import 'package:disc_test/app/res/constant.dart';
 import 'package:disc_test/app/res/sizes.dart';
 import 'package:disc_test/app/res/styles.dart';
 import 'package:disc_test/app/routes/app_pages.dart';
-import 'package:disc_test/app/module/login/page/register_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rive/rive.dart';
 
 class ResultPage extends StatelessWidget {
   final questionController = Get.find<QuestionController>();
+  // final questionController = Get.put(QuestionController(
+  //     questionRepository:
+  //         QuestionRepository(apiClient: MyApiClient(httpClient: Dio()))));
 
   @override
   Widget build(BuildContext context) {
@@ -40,19 +43,56 @@ class ResultPage extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: AppSize.sizedBoxHeightL),
-                      Image.asset('assets/images/result_1.png'),
+                      SizedBox(
+                        height: 250,
+                        width: 250,
+                        child: RiveAnimation.asset(
+                          'assets/animations/bear.riv',
+                          animations: [
+                            questionController.score /
+                                        questionController.scoreList.length >
+                                    AppConstant.hightScoreThreshold
+                                ? 'Correct'
+                                : 'Incorrect'
+                          ],
+                          fit: BoxFit.fill,
+                        ),
+                      ),
                       const SizedBox(height: AppSize.sizedBoxHeightL),
                       Text(
-                        'Xin chúc mừng ${Get.find<LoginController>().currentUser?.name}.\nBạn đạt được',
+                        Utils.getStringByScore(
+                            score: questionController.score /
+                                questionController.scoreList.length),
                         style: AppStyle.titleBoldTextStyleWeb,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: AppSize.sizedBoxHeightL),
                       Text(
-                        '${Get.find<QuestionController>().score} điểm',
-                        style: AppStyle.contentNormalTextStyle
-                            .copyWith(color: Colors.red, fontSize: 30),
+                        'Điểm số: ${questionController.score}/${questionController.scoreList.length} điểm',
+                        style: AppStyle.contentNormalTextStyle.copyWith(
+                            color: AppColor.getColorByScore(
+                                score: questionController.score /
+                                    questionController.scoreList.length),
+                            fontSize: 30),
                         textAlign: TextAlign.center,
+                      ),
+                      Visibility(
+                        // visible: questionController.score >
+                        //     AppConstant.hightScoreThreshold,
+                        visible: false,
+                        child: InkWell(
+                          onTap: () {
+                            Get.dialog(CustomSpinWheel());
+                          },
+                          child: SizedBox(
+                            height: 120,
+                            width: 120,
+                            child: RiveAnimation.asset(
+                              'assets/animations/giftBox.riv',
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 10),
                       ListView.separated(
@@ -112,7 +152,7 @@ class ResultPage extends StatelessWidget {
                                 minimumSize: Size(
                                     AppSize.buttonMinWidth,
                                     kIsWeb
-                                        ? AppSize.buttonMinHeightWeb
+                                        ? AppSize.buttonMinHeight
                                         : AppSize.buttonMinHeight),
                               ),
                               onPressed: () {

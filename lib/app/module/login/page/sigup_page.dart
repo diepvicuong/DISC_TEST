@@ -54,6 +54,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          Text(
+                            'Đăng kí tài khoản'.toUpperCase(),
+                            style: AppStyle.titleBoldTextStyleWeb,
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(height: 40),
                           Container(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
