@@ -29,7 +29,7 @@ class RegisterPage extends StatelessWidget {
                 children: [
                   Text(
                     'Đăng ký thông tin',
-                    style: AppStyle.titleBoldTextStyleWeb,
+                    style: AppStyle.titleBoldTextStyle,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: AppSize.sizedBoxHeightXL),

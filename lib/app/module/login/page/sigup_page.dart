@@ -48,7 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   AppbarBackBtn(),
                   Expanded(
                     child: Container(
-                      width: kIsWeb ? 500 : null,
+                      width: isWebDesktop ? 500 : null,
                       padding: EdgeInsets.all(20),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +56,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         children: [
                           Text(
                             'Đăng kí tài khoản'.toUpperCase(),
-                            style: AppStyle.titleBoldTextStyleWeb,
+                            style: AppStyle.titleBoldTextStyle,
                             textAlign: TextAlign.center,
                           ),
                           SizedBox(height: 40),

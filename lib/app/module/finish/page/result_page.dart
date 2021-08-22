@@ -39,7 +39,7 @@ class ResultPage extends StatelessWidget {
                     children: [
                       Text(
                         'Kết quả',
-                        style: AppStyle.titleBoldTextStyleWeb,
+                        style: AppStyle.titleBoldTextStyle,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: AppSize.sizedBoxHeightL),
@@ -63,7 +63,7 @@ class ResultPage extends StatelessWidget {
                         Utils.getStringByScore(
                             score: questionController.score /
                                 questionController.scoreList.length),
-                        style: AppStyle.titleBoldTextStyleWeb,
+                        style: AppStyle.titleBoldTextStyle,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: AppSize.sizedBoxHeightL),
@@ -149,11 +149,8 @@ class ResultPage extends StatelessWidget {
                               style: ElevatedButton.styleFrom(
                                 primary: AppColor.mostBtnColor,
                                 shape: StadiumBorder(),
-                                minimumSize: Size(
-                                    AppSize.buttonMinWidth,
-                                    kIsWeb
-                                        ? AppSize.buttonMinHeight
-                                        : AppSize.buttonMinHeight),
+                                minimumSize: Size(AppSize.buttonMinWidth,
+                                    AppSize.buttonMinHeight),
                               ),
                               onPressed: () {
                                 Get.offAllNamed(Routes.INITIAL);

@@ -98,19 +98,11 @@ class CustomPageIndicator extends GetView<QuestionController> {
             children: [
               Text(
                   "Câu hỏi ${controller.currentPageView + 1}/${controller.listQuestion.length}",
-                  style: kIsWeb
-                      ? AppStyle.indicatorTextStyleWeb
-                      : AppStyle.indicatorTextStyle),
+                  style: AppStyle.indicatorTextStyle),
               Text(controller.countDownQuestionInStr,
                   style: controller.countDownQuestionSec <= 10
-                      ? kIsWeb
-                          ? AppStyle.indicatorTextStyleWeb
-                              .copyWith(color: Colors.red)
-                          : AppStyle.indicatorTextStyle
-                              .copyWith(color: Colors.red)
-                      : kIsWeb
-                          ? AppStyle.indicatorTextStyleWeb
-                          : AppStyle.indicatorTextStyle),
+                      ? AppStyle.indicatorTextStyle.copyWith(color: Colors.red)
+                      : AppStyle.indicatorTextStyle),
             ],
           ),
           Row(

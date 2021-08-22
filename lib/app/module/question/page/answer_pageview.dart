@@ -28,9 +28,7 @@ class AnswerViewPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
                 questionData.question,
-                style: kIsWeb
-                    ? AppStyle.titleBoldTextStyleWeb
-                    : AppStyle.titleBoldTextStyle,
+                style: AppStyle.titleBoldTextStyle,
                 textAlign: TextAlign.center,
               ),
             ))),
@@ -112,7 +110,7 @@ class _ListAnswerWidgetState extends State<ListAnswerWidget>
           left: 0,
           child: Container(
               padding: EdgeInsets.symmetric(horizontal: AppSize.paddingSizeM),
-              height: kIsWeb ? 100 : 50,
+              height: isWebDesktop ? 100 : 50,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -245,7 +243,7 @@ class AnswerWidget extends StatelessWidget {
                       color: (isTapping)
                           ? Colors.white
                           : this.answerColor ?? Colors.black,
-                      fontSize: kIsWeb ? 30 : 20),
+                      fontSize: isWebDesktop ? 30 : 20),
                 ),
               ),
             ),

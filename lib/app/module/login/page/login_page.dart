@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                   AppbarBackBtn(),
                   Expanded(
                     child: Container(
-                      width: kIsWeb ? 500 : null,
+                      width: isWebDesktop ? 500 : null,
                       padding: EdgeInsets.all(20),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Text(
                             'GIÚP EM HỌC TỐT ',
-                            style: AppStyle.titleBoldTextStyleWeb,
+                            style: AppStyle.titleBoldTextStyle,
                             textAlign: TextAlign.center,
                           ),
                           SizedBox(height: 40),

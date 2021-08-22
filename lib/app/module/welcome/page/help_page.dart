@@ -33,7 +33,7 @@ class HelpPage extends StatelessWidget {
                           children: [
                             Text(
                               'DISC TEST la gi?',
-                              style: AppStyle.titleBoldTextStyleWeb,
+                              style: AppStyle.titleBoldTextStyle,
                               textAlign: TextAlign.center,
                             ),
                             const SizedBox(height: AppSize.sizedBoxHeightL),

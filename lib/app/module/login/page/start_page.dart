@@ -31,7 +31,7 @@ class StartPage extends StatelessWidget {
                     children: [
                       Text(
                         'Bài kiểm tra'.toUpperCase(),
-                        style: AppStyle.titleBoldTextStyleWeb,
+                        style: AppStyle.titleBoldTextStyle,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: AppSize.sizedBoxHeightL),
@@ -71,8 +71,8 @@ class StartPage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           primary: AppColor.mostBtnColor,
                           shape: StadiumBorder(),
-                          minimumSize: Size(AppSize.buttonMinWidth,
-                              kIsWeb ? AppSize.buttonMinHeight : 50),
+                          minimumSize: Size(
+                              AppSize.buttonMinWidth, AppSize.buttonMinHeight),
                         ),
                         onPressed: () {
                           Get.defaultDialog(

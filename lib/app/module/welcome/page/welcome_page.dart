@@ -29,7 +29,7 @@ class WelcomePage extends StatelessWidget {
                       children: [
                         Text(
                           'GIÚP EM HỌC TỐT',
-                          style: AppStyle.titleBoldTextStyleWeb,
+                          style: AppStyle.titleBoldTextStyle,
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: AppSize.sizedBoxHeightL),
