@@ -1,6 +1,7 @@
 import 'dart:collection';
 
-import 'package:disc_test/app/controllers/question/question_controller.dart';
+import 'package:disc_test/app/data/models/question.dart';
+import 'package:disc_test/app/module/question/controller/question_controller.dart';
 import 'package:disc_test/app/data/models/data_model.dart';
 import 'package:disc_test/app/res/colors.dart';
 import 'package:disc_test/app/res/sample_data.dart';
@@ -11,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AnswerViewPage extends StatelessWidget {
-  final QuestionData questionData;
+  final Question questionData;
   final double? page;
 
   const AnswerViewPage({Key? key, required this.questionData, this.page})
@@ -39,7 +40,7 @@ class AnswerViewPage extends StatelessWidget {
                     topLeft: Radius.circular(AppSize.commonBorderRadius),
                     topRight: Radius.circular(AppSize.commonBorderRadius))),
             child: ListAnswerWidget(
-              questionData: questionData,
+              answerList: questionData.suggestions ?? [],
               page: this.page,
             ),
           ),
@@ -52,11 +53,11 @@ class AnswerViewPage extends StatelessWidget {
 class ListAnswerWidget extends StatefulWidget {
   const ListAnswerWidget({
     Key? key,
-    required this.questionData,
+    required this.answerList,
     this.page,
   }) : super(key: key);
 
-  final QuestionData questionData;
+  final List<String> answerList;
   final double? page;
   @override
   _ListAnswerWidgetState createState() => _ListAnswerWidgetState();
@@ -75,7 +76,7 @@ class _ListAnswerWidgetState extends State<ListAnswerWidget>
         left: 0,
         bottom: MediaQuery.of(context).size.height * AppSize.ratioBottomButton,
         child: ListView.builder(
-          itemCount: widget.questionData.answerList.length,
+          itemCount: widget.answerList.length,
           itemBuilder: (context, index) => Column(
             children: [
               const SizedBox(
@@ -85,7 +86,7 @@ class _ListAnswerWidgetState extends State<ListAnswerWidget>
                 padding: const EdgeInsets.symmetric(
                     horizontal: AppSize.paddingSizeM),
                 child: AnswerWidget(
-                  answer: widget.questionData.answerList[index].answer,
+                  answer: widget.answerList[index],
                   isMost: _isMost == index,
                   isLeast: _isLeast == index,
                   mostOnTap: () {
@@ -127,26 +128,26 @@ class _ListAnswerWidgetState extends State<ListAnswerWidget>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Visibility(
-                    visible: widget.page != PageViewStatus.begining.index,
-                    child: Flexible(
-                      child: ElevatedButton(
-                        child: Text(
-                          'Previous',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          shape: StadiumBorder(),
-                          minimumSize: Size(
-                              AppSize.buttonMinWidth, AppSize.buttonMinHeight),
-                        ),
-                        onPressed: () {
-                          Get.find<QuestionController>().previousPage();
-                        },
-                      ),
-                    ),
-                  ),
+                  // Visibility(
+                  //   visible: widget.page != PageViewStatus.begining.index,
+                  //   child: Flexible(
+                  //     child: ElevatedButton(
+                  //       child: Text(
+                  //         'Previous',
+                  //         style: TextStyle(color: Colors.black),
+                  //       ),
+                  //       style: ElevatedButton.styleFrom(
+                  //         primary: Colors.white,
+                  //         shape: StadiumBorder(),
+                  //         minimumSize: Size(
+                  //             AppSize.buttonMinWidth, AppSize.buttonMinHeight),
+                  //       ),
+                  //       onPressed: () {
+                  //         Get.find<QuestionController>().previousPage();
+                  //       },
+                  //     ),
+                  //   ),
+                  // ),
                   Visibility(
                     visible: widget.page != PageViewStatus.begining.index,
                     child: const SizedBox(

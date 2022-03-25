@@ -1,5 +1,5 @@
 import 'package:disc_test/app/res/colors.dart';
-import 'package:disc_test/app/ui/login/widget/pin_theme.dart';
+import 'package:disc_test/app/module/login/widget/pin_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

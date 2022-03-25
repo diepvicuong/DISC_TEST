@@ -1,12 +1,12 @@
-import 'package:disc_test/app/bindings/question_binding.dart';
-import 'package:disc_test/app/ui/finish/page/finish_page.dart';
-import 'package:disc_test/app/ui/finish/page/result_page.dart';
-import 'package:disc_test/app/ui/finish/page/send_page.dart';
-import 'package:disc_test/app/ui/login/page/login_page.dart';
-import 'package:disc_test/app/ui/login/page/start_page.dart';
-import 'package:disc_test/app/ui/question/page/question_page.dart';
-import 'package:disc_test/app/ui/welcome/page/help_page.dart';
-import 'package:disc_test/app/ui/welcome/page/welcome_page.dart';
+import 'package:disc_test/app/module/finish/page/finish_page.dart';
+import 'package:disc_test/app/module/finish/page/result_page.dart';
+import 'package:disc_test/app/module/finish/page/send_page.dart';
+import 'package:disc_test/app/module/login/page/login_page.dart';
+import 'package:disc_test/app/module/login/page/start_page.dart';
+import 'package:disc_test/app/module/question/binding/question_binding.dart';
+import 'package:disc_test/app/module/question/page/question_page.dart';
+import 'package:disc_test/app/module/welcome/page/help_page.dart';
+import 'package:disc_test/app/module/welcome/page/welcome_page.dart';
 import 'package:get/get.dart';
 
 part './app_routes.dart';

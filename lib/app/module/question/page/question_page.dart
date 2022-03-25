@@ -1,12 +1,12 @@
 import 'package:disc_test/app/common/custom_body_background.dart';
 import 'package:disc_test/app/common/loading_widget.dart';
-import 'package:disc_test/app/controllers/question/question_controller.dart';
+import 'package:disc_test/app/module/question/controller/question_controller.dart';
 import 'package:disc_test/app/res/colors.dart';
 import 'package:disc_test/app/res/config.dart';
 import 'package:disc_test/app/res/sample_data.dart';
 import 'package:disc_test/app/res/styles.dart';
-import 'package:disc_test/app/ui/question/page/answer_pageview.dart';
-import 'package:disc_test/app/ui/welcome/page/help_page.dart';
+import 'package:disc_test/app/module/question/page/answer_pageview.dart';
+import 'package:disc_test/app/module/welcome/page/help_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -59,8 +59,11 @@ class _QuestionPageState extends State<QuestionPage> {
                           return AnswerViewPage(
                             questionData:
                                 _questionController.listQuestion[index],
-                            page: index /
-                                (_questionController.listQuestion.length - 1),
+                            page: _questionController.listQuestion.length > 1
+                                ? (index /
+                                    (_questionController.listQuestion.length -
+                                        1)
+                                : 1,
                           );
                         },
                         onPageChanged: (value) {

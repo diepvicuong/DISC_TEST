@@ -4,7 +4,7 @@ import 'package:disc_test/app/res/colors.dart';
 import 'package:disc_test/app/res/sizes.dart';
 import 'package:disc_test/app/res/styles.dart';
 import 'package:disc_test/app/routes/app_pages.dart';
-import 'package:disc_test/app/ui/finish/page/send_page.dart';
+import 'package:disc_test/app/module/finish/page/send_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

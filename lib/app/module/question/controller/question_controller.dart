@@ -1,5 +1,6 @@
 import 'package:disc_test/app/data/models/data_model.dart';
 import 'package:disc_test/app/data/models/message_model.dart';
+import 'package:disc_test/app/data/models/question.dart';
 import 'package:disc_test/app/data/repository/question_repository.dart';
 import 'package:disc_test/app/res/config.dart';
 import 'package:flutter/material.dart';
@@ -17,14 +18,13 @@ class QuestionController extends GetxController {
   int get currentPageView => this._currentPageView.value;
   set currentPageView(value) => this._currentPageView.value = value;
 
-  final _listQuestion = <QuestionData>[].obs;
-  List<QuestionData> get listQuestion => this._listQuestion.value;
-  set listQuestion(value) => this._listQuestion.value = value;
+  final _listQuestion = <Question>[].obs;
+  List<Question> get listQuestion => this._listQuestion.value;
 
   getAllQuestion() {
-    questionRepository.getAll().then((data) {
-      if (data is MessageModel) {
-        listQuestion = data.data;
+    questionRepository.fetchAllQuestion().then((data) {
+      if (data is List<Question>) {
+        _listQuestion.value = data;
       }
     });
   }
